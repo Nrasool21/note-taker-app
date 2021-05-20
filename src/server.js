@@ -1,4 +1,3 @@
-
 const express = require("express");
 
 const apiRoutes = require("./routes/apiRoutes");
@@ -17,9 +16,9 @@ const app = express();
 // Set up body parsing, static, and route middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('../public'));
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
+app.use(express.static("public"));
+app.use("/api", apiRoutes);
+app.use("/", htmlRoutes);
 
 const onSuccessfulOpen = () => {
   console.log(`listening on http://localhost:${PORT}`);

@@ -39,7 +39,7 @@ class Store {
       throw new Error("Note 'title' and 'text' cannot be blank");
     }
 
-    // Add a unique id to the note using uuid package
+    // Add a unique id to each note using uuid package
     const newNote = { title, text, id: uuidv4() };
 
     // Get all notes, add the new note, write all the updated notes, return the newNote

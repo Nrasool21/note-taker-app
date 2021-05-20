@@ -8,6 +8,6 @@ const {
 const htmlRouter = Router();
 
 htmlRouter.get("/notes", renderNotesPage);
-htmlRouter.get("*", renderIndexPage);
+htmlRouter.get("/", renderIndexPage);
 
 module.exports = htmlRouter;
