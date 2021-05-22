@@ -15,11 +15,22 @@ apiRouter.get("/notes", (req, res) => {
     })
     .catch((err) => res.status(500).json(err));
 });
-apiRouter.post("/notes", apiFunction.saveNotes);
-apiRouter.delete("/notes/:id", apiFunction.deleteNotes);
-apiRouter.get("/notes/:id", apiFunction.getNotesById);
+//apiRouter.post("/notes", apiFunction.saveNotes);
+apiRouter.post("/notes", (req, res) => {
+  store
+    .addNote(req.body)
+    .then((notes) => {
+      console.log(notes)
+      return res.json(notes);
+    })
+    .catch((err) => res.status(500).json(err));
+});
+//apiRouter.delete("/notes/:id", apiFunction.deleteNotes);
+//apiRouter.get("/notes/:id", apiFunction.getNotesById);
 
 //htmlRouter.get("/notes", renderNotesPage);
 //htmlRouter.get("*", renderIndexPage);
 
 module.exports = apiRouter;
+
+
