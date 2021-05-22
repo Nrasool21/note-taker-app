@@ -5,6 +5,7 @@ const fs = require("fs");
 //const uuidv1 = require("uuid/v1");
 const { v4: uuidv4 } = require("uuid");
 
+
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -41,7 +42,7 @@ class Store {
 
     // Add a unique id to each note using uuid package
     const newNote = { title, text, id: uuidv4() };
-
+    
     // Get all notes, add the new note, write all the updated notes, return the newNote
     return this.getNotes()
       .then((notes) => [...notes, newNote])
