@@ -34,7 +34,14 @@ apiRouter.delete("/notes/:id", (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 //apiRouter.get("/notes/:id", apiFunction.getNotesById);
-
+apiRouter.get("/notes/:id", (req, res) => {
+  store
+    .getNotes(req.body.id)
+    .then((notes) => {
+      return res.json(notes);
+    })
+    .catch((err) => res.status(500).json(err));
+});
 //htmlRouter.get("/notes", renderNotesPage);
 //htmlRouter.get("*", renderIndexPage);
 
