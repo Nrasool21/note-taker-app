@@ -26,6 +26,15 @@ apiRouter.post("/notes", (req, res) => {
     .catch((err) => res.status(500).json(err));
 });
 //apiRouter.delete("/notes/:id", apiFunction.deleteNotes);
+apiRouter.delete("/notes", (req, res) => {
+  store
+    .removeNote(note.id)
+    .then((notes) => {
+      console.log(notes);
+      return res.json(notes);
+    })
+    .catch((err) => res.status(500).json(err));
+});
 //apiRouter.get("/notes/:id", apiFunction.getNotesById);
 
 //htmlRouter.get("/notes", renderNotesPage);
