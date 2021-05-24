@@ -1,14 +1,14 @@
 //const { Router } = require("express");
 
 const apiRouter = require("express").Router();
-const store = require("../../db/store");
+const dbStore = require("../../db/store");
 
 const apiFunction = require("../controllers/apiControllers");
 
-///api/notes -> GET (all notes from db.json)
-// apiRouter.get("/notes", apiFunction.getAllNotes);
+//api/notes -> GET (all notes from db.json)
+//apiRouter.get("/notes", apiFunction.getAllNotes);
 apiRouter.get("/notes", (req, res) => {
-  store
+  dbStore
     .getNotes()
     .then((notes) => {
       return res.json(notes);
@@ -17,8 +17,8 @@ apiRouter.get("/notes", (req, res) => {
 });
 //apiRouter.post("/notes", apiFunction.saveNotes);
 apiRouter.post("/notes", (req, res) => {
-  store
-    .addNote(req.body)
+  dbStore
+    .addNote()
     .then((notes) => {
       return res.json(notes);
     })
@@ -26,24 +26,15 @@ apiRouter.post("/notes", (req, res) => {
 });
 //apiRouter.delete("/notes/:id", apiFunction.deleteNotes);
 apiRouter.delete("/notes/:id", (req, res) => {
-  store
-    .removeNote(req.params.id)
+  dbStore
+    .removeNote()
     .then((notes) => {
       return res.json(notes);
     })
     .catch((err) => res.status(500).json(err));
 });
 //apiRouter.get("/notes/:id", apiFunction.getNotesById);
-apiRouter.get("/notes/:id", (req, res) => {
-  store
-    .getNotes(req.body.id)
-    .then((notes) => {
-      return res.json(notes);
-    })
-    .catch((err) => res.status(500).json(err));
-});
-//htmlRouter.get("/notes", renderNotesPage);
-//htmlRouter.get("*", renderIndexPage);
+
 
 module.exports = apiRouter;
 
