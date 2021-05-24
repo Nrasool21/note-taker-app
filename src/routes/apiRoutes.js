@@ -2,13 +2,17 @@
 
 const apiRouter = require("express").Router();
 const dbStore = require("../../db/store");
+const fs = require("fs");
 
 const apiFunction = require("../controllers/apiControllers");
+
+const readFileNotes = fs.readFileSync("../../db/db.json");
+console.log(readFileNotes)
 
 //api/notes -> GET (all notes from db.json)
 //apiRouter.get("/notes", apiFunction.getAllNotes);
 apiRouter.get("/notes", (req, res) => {
-  dbStore
+  dbStor
     .getNotes()
     .then((notes) => {
       return res.json(notes);
