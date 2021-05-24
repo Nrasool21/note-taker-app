@@ -10,7 +10,7 @@ const apiFunction = require("../controllers/apiControllers");
 //api/notes -> GET (all notes from db.json)
 //apiRouter.get("/notes", apiFunction.getAllNotes);
 const readFromDatabase = (fileName) => {
-const data = fs.readFileSync(path.join(__dirname, "/db/db.json"), "UTF-8");
+const data = fs.readFileSync(path.join(__dirname, "../../db/db.json"), "UTF-8");
 return data
 }
 
@@ -20,6 +20,7 @@ const getAllNotes = (req, res) => {
   console.log(allNotes)
   res.json(JSON.parse(dbNotes));
 };
+apiRouter.get("/notes", getAllNotes);
 //apiRouter.post("/notes", apiFunction.saveNotes);
 apiRouter.post("/notes", (req, res) => {
   dbStore
