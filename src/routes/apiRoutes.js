@@ -1,24 +1,25 @@
 //const { Router } = require("express");
 
 const apiRouter = require("express").Router();
-const dbStore = require("../../db/store");
+const path = require("path");
 const fs = require("fs");
 
 const apiFunction = require("../controllers/apiControllers");
 
-const readFileNotes = fs.readFileSync("../../db/db.json");
-console.log(readFileNotes)
 
 //api/notes -> GET (all notes from db.json)
 //apiRouter.get("/notes", apiFunction.getAllNotes);
-apiRouter.get("/notes", (req, res) => {
-  dbStor
-    .getNotes()
-    .then((notes) => {
-      return res.json(notes);
-    })
-    .catch((err) => res.status(500).json(err));
-});
+const readFromDatabase = (fileName) => {
+const data = fs.readFileSync(path.join(__dirname, "/db/db.json"), "UTF-8");
+return data
+}
+
+const getAllNotes = (req, res) => {
+  console.log("Welcome");
+  const allNotes = readFromDatabase("dbNotes");
+  console.log(allNotes)
+  res.json(JSON.parse(dbNotes));
+};
 //apiRouter.post("/notes", apiFunction.saveNotes);
 apiRouter.post("/notes", (req, res) => {
   dbStore
