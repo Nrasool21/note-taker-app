@@ -1,4 +1,4 @@
-//const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 const path = require("path");
 const fs = require("fs");
 //const cors = require("cors");
@@ -6,6 +6,7 @@ const fs = require("fs");
 const BASE_URL = "http://localhost:3000/api/notes";
 
 //app.use(cors());
+
 
 const getAllNotes = (req, res) => {
   console.log("Welcome");
@@ -24,6 +25,8 @@ const deleteNotes = (req, res) => {
 };
 
 const getNotesById = (req, res) => {
+  const { id } = req.params;
+
   res.json({ message: "bye" });
 };
 
