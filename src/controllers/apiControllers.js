@@ -8,29 +8,36 @@ const database = require("../../db/db.json");
 const BASE_URL = "http://localhost:3000/api/notes";
 
 //app.use(cors());
-
+const readNotes = () => {
+  const notes = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "../../db/db.json"), "utf-8")
+  );
+  return notes
+}
 const getAllNotes = (req, res) => {
-  res.json(database);
+  const notes = readNotes()
+
+  res.json(notes);
 };
 
 const saveNotes = (req, res) => {
-  const { message} = req.body;
-  //console.log(req.body)
+  const { title, text } = req.body;
+  const notes = readNotes()
   const id = uuidv4();
   const newNotes = {
     title,
     text,
     id,
   };
-  database.push(newNotes);
-  fs.writeFile("../../db/db.json", JSON.stringify(database), (err) => {
+  notes.push(newNotes);
+  fs.writeFile(path.join(__dirname, "../../db/db.json"), JSON.stringify(notes), (err) => {
     if (err) {
       console.error(err);
       return;
     }
-    //file written successfully
+    res.json(notes);
   });
-  res.json(database);
+  
 };
 
 const deleteNotes = (req, res) => {
@@ -40,7 +47,7 @@ const deleteNotes = (req, res) => {
 const getNotesById = (req, res) => {
   const { id } = req.params;
 
-  res.json({ message: "Hello there" });
+  res.json({ message: "hello" });
 };
 
 module.exports = { getAllNotes, saveNotes, deleteNotes, getNotesById };
