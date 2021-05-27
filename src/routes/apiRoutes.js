@@ -12,10 +12,10 @@ const fs = require("fs");
 
 //api/notes -> GET (all notes from db.json)
 //apiRouter.get("/notes", apiFunction.getAllNotes);
-const readFromDatabase = (fileName) => {
-const data = fs.readFileSync(path.join(__dirname, "../../db/db.json"), "UTF-8");
-return data
-}
+//const readFromDatabase = (fileName) => {
+//const data = fs.readFileSync(path.join(__dirname, "../../db/db.json"), "UTF-8");
+//return data
+//}
 
 apiRouter.get("/notes", apiFunction.getAllNotes);
 apiRouter.post("/notes", apiFunction.saveNotes);
