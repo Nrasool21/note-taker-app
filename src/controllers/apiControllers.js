@@ -43,10 +43,16 @@ const saveNotes = (req, res) => {
 const deleteNotes = (req, res) => {
   const { id } = req.params;
   const notes = readNotes();
-  const newNote = notes.filter((each) => {
+  const newNotes = notes.filter((each) => {
+    //true to all the notes that don't have a match
     return each.id !== id
   })
-  res.json(newNote);
+  fs.writeFile(path.join(__dirname, "../../db/db.json"), JSON.stringify(newNotes), (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }})
+  res.json(newNotes);
 };
 
 const getNotesById = (req, res) => {
