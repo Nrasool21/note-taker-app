@@ -41,13 +41,24 @@ const saveNotes = (req, res) => {
 };
 
 const deleteNotes = (req, res) => {
-  res.json({ message: "bye" });
+  const { id } = req.params;
+  const notes = readNotes();
+  const newNote = notes.filter((each) => {
+    return each.id !== id
+  })
+  res.json(newNote);
 };
 
 const getNotesById = (req, res) => {
   const { id } = req.params;
-
-  res.json({ message: "hello" });
+  const notes = readNotes();
+  const singleNote = notes.find((each) => {
+    
+    return each.id === id;
+    
+  })
+  //console.log(singleNote);
+  res.json(singleNote);
 };
 
 module.exports = { getAllNotes, saveNotes, deleteNotes, getNotesById };
