@@ -4,10 +4,6 @@ const path = require("path");
 const fs = require("fs");
 const database = require("../../db/db.json");
 
-//const cors = require("cors");
-const BASE_URL = "http://localhost:3000/api/notes";
-
-//app.use(cors());
 const readNotes = () => {
   const notes = JSON.parse(
     fs.readFileSync(path.join(__dirname, "../../db/db.json"), "utf-8")
